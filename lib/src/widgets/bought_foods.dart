@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 
 class BoughtFoods extends StatefulWidget {
-  const BoughtFoods({Key key}) : super(key: key);
+  final String id;
+  final String name;
+  final String imagePath;
+  final String category;
+  final double price;
+  final double discount;
+  final double ratings;
+  const BoughtFoods({Key key, this.id, this.name, this.imagePath, this.category, this.price, this.discount, this.ratings}) : super(key: key);
 
   @override
   _BoughtFoodsState createState() => _BoughtFoodsState();
@@ -20,7 +27,7 @@ class _BoughtFoodsState extends State<BoughtFoods> {
             width: 360.0,
             color: Colors.green,
             child: Image.asset(
-              'assets/images/breakfast.jpeg',
+              widget.imagePath,
               fit: BoxFit.cover,
             ),
           ),
@@ -47,7 +54,7 @@ class _BoughtFoodsState extends State<BoughtFoods> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Hot Coffee",
+                      widget.name ,
                       style: TextStyle(
                           fontSize: 18.0,
                           fontWeight: FontWeight.bold,
@@ -83,7 +90,7 @@ class _BoughtFoodsState extends State<BoughtFoods> {
                         SizedBox(
                           width: 20.0,
                         ),
-                        Text("(22.0 Reviews)",
+                        Text("(${widget.ratings} Reviews)",
                             style: TextStyle(color: Colors.grey)),
                       ],
                     )
@@ -91,7 +98,7 @@ class _BoughtFoodsState extends State<BoughtFoods> {
                 ),
                 Column(
                   children: [
-                    Text("22.0 ",
+                    Text("${widget.price}",
                       style: TextStyle(color: Colors.orangeAccent, fontSize: 18.0,fontWeight: FontWeight.bold)),
                     Text("Min Order",
                       style: TextStyle(color: Colors.grey)),
