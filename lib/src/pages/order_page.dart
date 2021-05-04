@@ -11,13 +11,23 @@ class Order extends StatefulWidget {
 class _OrderState extends State<Order> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: ListView(
-        padding: EdgeInsets.symmetric(horizontal: 10.0),
-        scrollDirection: Axis.vertical,
-        children: [
-          OrderCard(),
-        ],
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        centerTitle: true,
+        title: Text('Your Food Cart', style: TextStyle(
+          color: Colors.black
+        ),),
+      ),
+      body: SafeArea(
+        child: ListView(
+          padding: EdgeInsets.symmetric(horizontal: 10.0),
+          scrollDirection: Axis.vertical,
+          children: [
+            OrderCard(),
+          ],
+        ),
       ),
     );
   }
