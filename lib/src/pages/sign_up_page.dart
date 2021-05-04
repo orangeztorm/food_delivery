@@ -1,20 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:food_delivery/src/pages/sign_up_page.dart';
+import 'package:food_delivery/src/pages/sign_in_page.dart';
 
-class SignInPage extends StatefulWidget {
-  const SignInPage({Key key}) : super(key: key);
+class SignUpPage extends StatefulWidget {
+  const SignUpPage({Key key}) : super(key: key);
 
   @override
-  _SignInPageState createState() => _SignInPageState();
+  _SignUpPageState createState() => _SignUpPageState();
 }
 
-class _SignInPageState extends State<SignInPage> {
+class _SignUpPageState extends State<SignUpPage> {
   bool _toggleVisibility = false;
+  bool _toggleVisibility2 = false;
 
   Widget _buildEmailTextField() {
     return TextFormField(
       decoration: InputDecoration(
-          hintText: "Enter email or username",
+          hintText: "Enter username",
+          hintStyle: TextStyle(color: Color(0xFFBDC2CB), fontSize: 18.0)),
+    );
+  }
+  Widget _buildUserNameTextField() {
+    return TextFormField(
+      decoration: InputDecoration(
+          hintText: "Enter email",
           hintStyle: TextStyle(color: Color(0xFFBDC2CB), fontSize: 18.0)),
     );
   }
@@ -38,6 +46,25 @@ class _SignInPageState extends State<SignInPage> {
     );
   }
 
+  Widget _buildConfirmPasswordTextField() {
+    return TextFormField(
+      maxLines: 1,
+      obscureText: _toggleVisibility2,
+      decoration: InputDecoration(
+          hintText: "Confirm Password ",
+          suffixIcon: InkWell(
+              onTap: () {
+                setState(() {
+                  _toggleVisibility2 = !_toggleVisibility2;
+                });
+              },
+              child: _toggleVisibility2
+                  ? Icon(Icons.visibility_off)
+                  : Icon(Icons.visibility)),
+          hintStyle: TextStyle(color: Color(0xFFBDC2CB), fontSize: 18.0)),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,7 +76,7 @@ class _SignInPageState extends State<SignInPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'Sign In',
+                  'Sign Up',
                   style: TextStyle(
                     fontSize: 40.0,
                     fontWeight: FontWeight.bold,
@@ -58,19 +85,7 @@ class _SignInPageState extends State<SignInPage> {
                 SizedBox(
                   height: 100.0,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Text(
-                      'Forgotten Password?',
-                      style: TextStyle(
-                        fontSize: 18.0,
-                        color: Colors.blueAccent,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    )
-                  ],
-                ),
+
                 SizedBox(
                   height: 10.0,
                 ),
@@ -80,9 +95,13 @@ class _SignInPageState extends State<SignInPage> {
                     padding: EdgeInsets.all(20.0),
                     child: Column(
                       children: [
+                        _buildUserNameTextField(),
+                        SizedBox(height: 20.0),
                         _buildEmailTextField(),
                         SizedBox(height: 20.0),
                         _buildPasswordTextField(),
+                        SizedBox(height: 20.0),
+                        _buildConfirmPasswordTextField(),
                       ],
                     ),
                   ),
@@ -98,7 +117,7 @@ class _SignInPageState extends State<SignInPage> {
                   ),
                   child: Center(
                     child: Text(
-                      'Sign In',
+                      'Sign Up',
                       style: TextStyle(
                           fontSize: 18.0,
                           fontWeight: FontWeight.bold,
@@ -112,7 +131,7 @@ class _SignInPageState extends State<SignInPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text("Don't have an account?  ",
+                    Text("Already have an account?  ",
                         style: TextStyle(
                             fontSize: 16.0,
                             fontWeight: FontWeight.bold,
@@ -120,11 +139,10 @@ class _SignInPageState extends State<SignInPage> {
                     SizedBox(
                       width: 10,
                     ),
-                    GestureDetector(onTap: (){
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(
-                          builder: (BuildContext context) => SignUpPage()));
-                    },
-                      child: Text('Sign Up',
+                    GestureDetector(
+                      onTap: (){ Navigator.of(context).pushReplacement(MaterialPageRoute(
+                          builder: (BuildContext context) => SignInPage()));},
+                      child: Text('Sign In',
                           style: TextStyle(
                               fontSize: 16.0,
                               fontWeight: FontWeight.bold,
@@ -138,5 +156,4 @@ class _SignInPageState extends State<SignInPage> {
         ),
       ),
     );
-  }
-}
+  }}
