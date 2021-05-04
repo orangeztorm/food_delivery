@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery/src/screens/main_screen.dart';
 
-import 'homeScreen.dart';
 
 class App extends StatelessWidget {
   @override
@@ -11,7 +11,7 @@ class App extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Colors.blueAccent
       ),
-      home: HomeScreen(),
+      home: MainScreen(),
     );
   }
 }
